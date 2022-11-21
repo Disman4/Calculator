@@ -17,15 +17,14 @@ class ViewController: UIViewController {
     private var displayValue: Double {
         
         get {
-            guard let number = Double(displayLabel.text!) else {fatalError (" Cannot convert display label text to a Double ")}
-            
+            guard let number = Double(displayLabel.text!) else {
+                fatalError (" Cannot convert display label text to a Double ")
+            }
             return number
         }
-        
         set {
             displayLabel.text = String(newValue)
         }
-        
     }
     
     private var calculator = CalculatorLogic()
@@ -39,12 +38,10 @@ class ViewController: UIViewController {
         
         if let calcMethod = sender.currentTitle {
             
-            guard let result = calculator.calculate(symbol: calcMethod) else { fatalError("The result of calculation is nil")}
-                
-            displayValue = result
-            
+            if let result = calculator.calculate(symbol: calcMethod){
+                displayValue = result
+            }
         }
-        
     }
     
     @IBAction func numButtonPressed(_ sender: UIButton) {
@@ -64,11 +61,10 @@ class ViewController: UIViewController {
                         return
                     }
                 }
-                
+
                 displayLabel.text = displayLabel.text! + numValue
             }
         }
     }
-    
 }
 
